@@ -1,7 +1,7 @@
 # Micro-Batching
 Micro-batcher which allows batching of jobs and setting a frequency and size limit.
 
-## To  Micro-batcher
+## Use Micro-batcher
 ```go
    
 // initialise micro-batcher with limit, frequency and a JobProcessor

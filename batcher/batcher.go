@@ -23,18 +23,13 @@ type batch struct {
 	size           int // batch limit
 	frequency      time.Duration
 	enable         bool // controls if batching is allowed or not
-	jobs           []any
+	jobs           []any // list of jobs
 	result         chan string // to send out processed results once received
-	batchProcessor BatchProcessor
+	batchProcessor BatchProcessor // processor to handle batched jobs
 	triggerBatch   chan struct{} // channel to get a signal when to batch next lot of jobs
 	stopBatch      chan struct{} // channel to send stop signal to stop batching
 	lockChan       chan struct{} // channel used as a lock
 	ticker         *time.Ticker  // to manage frequency
-}
-
-type JobResult struct {
-	ID         string
-	CompleteAt time.Time
 }
 
 func New(ctx context.Context, size int, frequency time.Duration, bProcessor BatchProcessor) Batcher {

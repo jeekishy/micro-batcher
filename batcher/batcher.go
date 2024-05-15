@@ -127,7 +127,7 @@ func (b *batch) sendBatchedJobsForProcessing() {
 	b.unlock()
 
 	// handle job result from job processor
-	// this will terminate all job is processed and channel is closed
+	// this will terminate when all job(s) is processed and channel is closed
 	go func() {
 		for r := range result {
 			b.result <- r
